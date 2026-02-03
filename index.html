@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>LIVE RÚSSIA BR • Painel de Suporte</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  background: #020617;
+  padding: 18px;
+  text-align: center;
+  border-bottom: 2px solid #1e40af;
+}
+
+header h1 {
+  color: #38bdf8;
+  margin: 0;
+  font-size: 22px;
+}
+
+header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 12px;
+}
+
+/* SEARCH */
+.search-box {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 44px 14px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-box i {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* RESULTADOS */
+.result {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 15px;
+}
+
+.result h3 {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.badge {
+  background: #1e40af;
+  color: #dbeafe;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  display: inline-block;
+}
+
+/* INFO FIXA */
+.info-box {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 10px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.info-box h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #38bdf8;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 18px;
+  font-size: 13px;
+  color: #94a3b8;
+  border-top: 1px solid #1e293b;
+  margin-top: 30px;
+}
+
+footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>LIVE RÚSSIA BR</h1>
+  <p>Painel Inteligente de Suporte</p>
+</header>
+
+<div class="container">
+
+  <!-- 🔍 BUSCA -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="search"
+      placeholder="Pesquisar: RP, MG, DM, Caps Lock..."
+      onkeyup="searchData()"
+    >
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- 📄 RESULTADOS -->
+  <div id="results"></div>
+
+  <!-- 📜 TEXTO FIXO -->
+  <div class="info-box">
+    <h3>📜 Regras de Chat</h3>
+    1.0 Caps Lock – 30 minutos de mute<br>
+    1.1 Mensagens fora do tópico – 30 minutos de mute<br>
+    1.2 Comportamento inadequado / perturbador – 60 minutos de mute<br>
+    1.3 Flood / spam – 60 minutos de mute<br>
+    1.4 Insultos a jogadores / helpers / administração – 60 minutos de mute<br>
+    1.5 Insultos / menções a parentes – 60 minutos de mute<br><br>
+    <b>Nota:</b><br>
+    É obrigatório tirar uma captura de tela antes de aplicar a punição.<br>
+    As evidências devem ser mantidas por 5 a 10 dias.
+  </div>
+
+</div>
+
+<footer>
+  📢 <a href="https://t.me/+nmHUj39Wf5o4ODI6" target="_blank">Grupo do Telegram</a><br>
+  👨‍💻 Criador do site: <b>@Suporte_Mark</b>
+</footer>
+
+<script src="database.js"></script>
+<script>
+function renderAll() {
+  const results = document.getElementById("results");
+  results.innerHTML = "";
+
+  database.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "result";
+    div.innerHTML = `
+      <span class="badge">${item.category}</span>
+      <h3>${item.title}</h3>
+      <p>${item.text.replace(/\\n/g, "<br>")}</p>
+    `;
+    results.appendChild(div);
+  });
+}
+
+function searchData() {
+  const input = document.getElementById("search").value.toLowerCase();
+  const results = document.getElementById("results");
+  results.innerHTML = "";
+
+  if (!input) {
+    renderAll();
+    return;
+  }
+
+  const found = database.filter(item =>
+    item.keywords.some(k => input.includes(k.toLowerCase()))
+  );
+
+  if (!found.length) {
+    results.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+    return;
+  }
+
+  found.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "result";
+    div.innerHTML = `
+      <span class="badge">${item.category}</span>
+      <h3>${item.title}</h3>
+      <p>${item.text.replace(/\\n/g, "<br>")}</p>
+    `;
+    results.appendChild(div);
+  });
+}
+
+window.onload = renderAll;
+</script>
+
+</body>
+</html>

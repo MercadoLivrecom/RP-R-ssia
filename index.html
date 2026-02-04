@@ -1,230 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>LIVE RÚSSIA BR • Painel de Suporte</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE RÚSSIA BR • Painel de Suporte</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a1f44;
+            color: #ffffff;
+        }
 
-<style>
-* { box-sizing: border-box; }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #061634;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
 
-body {
-  background: #0f172a;
-  color: #e5e7eb;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-}
+        .logo img {
+            height: 50px;
+        }
 
-/* HEADER */
-header {
-  background: #020617;
-  padding: 18px;
-  text-align: center;
-  border-bottom: 2px solid #1e40af;
-}
+        .menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 25px;
+            transition: color 0.3s;
+        }
 
-header h1 {
-  color: #38bdf8;
-  margin: 0;
-  font-size: 22px;
-}
+        .menu a:hover {
+            color: #ff6600;
+        }
 
-header p {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: #94a3b8;
-}
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
 
-/* CONTAINER */
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px 12px;
-}
+        .search-box {
+            position: relative;
+            width: 50%;
+            max-width: 500px;
+        }
 
-/* SEARCH */
-.search-box {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 20px;
-  position: relative;
-}
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
 
-.search-box input {
-  width: 100%;
-  padding: 14px 44px 14px 14px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-size: 15px;
-}
+        .search-box input[type="text"]:focus {
+            box-shadow: 0 0 10px #ff6600;
+        }
 
-.search-box i {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #64748b;
-  font-size: 16px;
-  pointer-events: none;
-}
+        .search-box .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888888;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
 
-/* RESULTADOS */
-.result {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 15px;
-}
+        .search-box .search-icon:hover {
+            color: #ff6600;
+        }
 
-.result h3 {
-  margin: 8px 0;
-  font-size: 16px;
-}
+        /* Área de resultados */
+        .results {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background-color: #061634;
+            border-radius: 10px;
+            min-height: 150px; /* Altura mínima antes de resultados aparecerem */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
 
-.badge {
-  background: #1e40af;
-  color: #dbeafe;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  display: inline-block;
-}
+        /* FAQ */
+        .faq {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            padding: 20px;
+            background-color: #061634;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
 
-/* INFO FIXA */
-.info-box {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 16px;
-  margin-top: 10px;
-  line-height: 1.6;
-  font-size: 14px;
-}
+        .faq h2 {
+            margin-bottom: 15px;
+            color: #ff6600;
+        }
 
-.info-box h3 {
-  margin-top: 0;
-  font-size: 16px;
-  color: #38bdf8;
-}
+        .faq a {
+            display: block;
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid #0a1f44;
+            transition: color 0.3s;
+        }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 18px;
-  font-size: 13px;
-  color: #94a3b8;
-  border-top: 1px solid #1e293b;
-  margin-top: 30px;
-}
+        .faq a:hover {
+            color: #ff6600;
+        }
 
-footer a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-</style>
+        @media (max-width: 768px) {
+            .search-box {
+                width: 70%;
+            }
+
+            .results, .faq {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .search-box {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1>LIVE RÚSSIA BR</h1>
-  <p>Painel Inteligente de Suporte</p>
-</header>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="head-logo.png" alt="Logo LIVE RÚSSIA">
+        </div>
+        <div class="menu">
+            <a href="contatos.html">Redes Sociais</a>
+        </div>
+    </header>
 
-<div class="container">
+    <!-- Campo de busca -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" placeholder="Digite sua busca...">
+            <span class="search-icon">&#128269;</span>
+        </div>
+    </div>
 
-  <!-- 🔍 BUSCA -->
-  <div class="search-box">
-    <input
-      type="text"
-      id="search"
-      placeholder="Pesquisar: RP, MG, DM, Caps Lock..."
-      onkeyup="searchData()"
-    >
-    <i class="fas fa-search"></i>
-  </div>
+    <!-- Área de resultados -->
+    <div class="results">
+        <!-- Aqui os resultados da busca serão exibidos -->
+        <p style="color:#888888;">Resultados aparecerão aqui...</p>
+    </div>
 
-  <!-- 📄 RESULTADOS -->
-  <div id="results"></div>
-
-  <!-- 📜 TEXTO FIXO -->
-  <div class="info-box">
-    <h3>📜 Regras de Chat</h3>
-    1.0 Caps Lock – 30 minutos de mute<br>
-    1.1 Mensagens fora do tópico – 30 minutos de mute<br>
-    1.2 Comportamento inadequado / perturbador – 60 minutos de mute<br>
-    1.3 Flood / spam – 60 minutos de mute<br>
-    1.4 Insultos a jogadores / helpers / administração – 60 minutos de mute<br>
-    1.5 Insultos / menções a parentes – 60 minutos de mute<br><br>
-    <b>Nota:</b><br>
-    É obrigatório tirar uma captura de tela antes de aplicar a punição.<br>
-    As evidências devem ser mantidas por 5 a 10 dias.
-  </div>
-
-</div>
-
-<footer>
-  📢 <a href="https://t.me/+nmHUj39Wf5o4ODI6" target="_blank">Grupo do Telegram</a><br>
-  👨‍💻 Criador do site: <b>@Suporte_Mark</b>
-</footer>
-
-<script src="database.js"></script>
-<script>
-function renderAll() {
-  const results = document.getElementById("results");
-  results.innerHTML = "";
-
-  database.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "result";
-    div.innerHTML = `
-      <span class="badge">${item.category}</span>
-      <h3>${item.title}</h3>
-      <p>${item.text.replace(/\\n/g, "<br>")}</p>
-    `;
-    results.appendChild(div);
-  });
-}
-
-function searchData() {
-  const input = document.getElementById("search").value.toLowerCase();
-  const results = document.getElementById("results");
-  results.innerHTML = "";
-
-  if (!input) {
-    renderAll();
-    return;
-  }
-
-  const found = database.filter(item =>
-    item.keywords.some(k => input.includes(k.toLowerCase()))
-  );
-
-  if (!found.length) {
-    results.innerHTML = "<p>Nenhum resultado encontrado.</p>";
-    return;
-  }
-
-  found.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "result";
-    div.innerHTML = `
-      <span class="badge">${item.category}</span>
-      <h3>${item.title}</h3>
-      <p>${item.text.replace(/\\n/g, "<br>")}</p>
-    `;
-    results.appendChild(div);
-  });
-}
-
-window.onload = renderAll;
-</script>
+    <!-- Perguntas Frequentes -->
+    <div class="faq">
+        <h2>Perguntas Frequentes</h2>
+        <a href="gps-trabalhos.html">GPS Trabalhos</a>
+        <a href="regras-servidor.html">Regras do Servidor</a>
+        <a href="regras-gerais.html">Regras Gerais</a>
+    </div>
 
 </body>
 </html>

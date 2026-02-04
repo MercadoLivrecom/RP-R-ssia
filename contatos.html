@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIVE RÚSSIA BR • Painel de Suporte</title>
+
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #fff;
+    }
+
+    /* Cabeçalho */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: linear-gradient(90deg, #1f1f1f, #181818);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 60px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Botões sociais */
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background-color: #2a2a2a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-buttons a:hover {
+      background-color: #4a90e2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .nav-buttons a i {
+      font-size: 16px;
+    }
+
+    .nav-buttons .download-btn {
+      background: linear-gradient(45deg, #ff5722, #e64a19);
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .nav-buttons .download-btn:hover {
+      background: linear-gradient(45deg, #e64a19, #d84315);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+    /* Perfil estilo Telegram */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #1e1e1e;
+      padding: 30px 20px;
+      margin: 30px auto;
+      max-width: 700px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .profile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #4a90e2;
+      margin-bottom: 15px;
+    }
+
+    .profile h2 {
+      font-size: 24px;
+      color: #4a90e2;
+      margin-bottom: 5px;
+    }
+
+    .profile h3 {
+      font-size: 16px;
+      color: #bbb;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+
+    .profile p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    .profile a.button {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #4a90e2;
+      color: #fff;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .profile a.button:hover {
+      background: #357ab8;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Responsividade */
+    @media(max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+
+      .nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .nav-buttons a {
+        flex: 1 1 calc(33% - 10px);
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+
+      .profile {
+        margin: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="head-logo.png" alt="LIVE RÚSSIA BR">
+      </a>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="https://forum.liverussia.online/" target="_blank"><i class="fa-solid fa-comments"></i> Fórum</a>
+      <a href="https://t.me/+nmHUj39Wf5o4ODI6" target="_blank"><i class="fa-brands fa-telegram"></i> Grupo TG</a>
+      <a href="https://t.me/lr_brazil" target="_blank"><i class="fa-brands fa-telegram"></i> Canal TG</a>
+      <a href="https://www.facebook.com/groups/liverussia.online" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
+      <a href="https://x.com/liverussimobile" target="_blank"><i class="fa-brands fa-x-twitter"></i> X.com</a>
+      <a href="https://discord.gg/Hs99taWPAy" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="https://liverussia.online/play?promo=MARK" target="_blank" class="download-btn"><i class="fa-solid fa-download"></i> Download</a>
+    </div>
+  </header>
+
+  <!-- Seção de Perfil estilo Telegram -->
+  <section class="profile">
+    <img src="1.jpg" alt="Foto de Perfil">
+    <h2>『 Suporte 』 𝙈𝙖𝙧𝙠 𓅂</h2>
+    <h3>@Suporte_Mark</h3>
+    <p>Olá jogadores! Fiz esse site para ajudar vocês tanto em consultas sobre regras, como para ficar mais fácil entrar nas redes sociais oficiais. Clicando no botão abaixo, vocês são redirecionados para a tela de consultas, onde podem consultar regras do RP oficiais tiradas do fórum.</p>
+    <a href="index.html" class="button">Consultar Regras</a>
+  </section>
+
+</body>
+</html>

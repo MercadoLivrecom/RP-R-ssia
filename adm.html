@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel ADM - PS TIM MOD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:#e2e8f0;
+padding:40px 8%;
+}
+
+h1{
+margin-bottom:30px;
+color:#3b82f6;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+}
+
+.field{
+margin-bottom:20px;
+display:flex;
+flex-direction:column;
+}
+
+label{
+margin-bottom:6px;
+font-size:14px;
+color:#94a3b8;
+}
+
+input, textarea{
+padding:12px;
+border-radius:6px;
+border:none;
+background:#1e293b;
+color:white;
+font-size:14px;
+resize:none;
+}
+
+textarea{
+min-height:100px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:6px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+margin-top:10px;
+transition:.3s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result-box{
+margin-top:30px;
+padding:15px;
+background:#1e293b;
+border-radius:8px;
+word-break:break-all;
+}
+
+.copy-btn{
+margin-top:10px;
+background:#16a34a;
+}
+
+.copy-btn:hover{
+background:#15803d;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Painel Administrativo</h1>
+
+<div class="field">
+<label>Título do Arquivo</label>
+<input type="text" id="titulo">
+</div>
+
+<div class="field">
+<label>Link para Download</label>
+<input type="text" id="link">
+</div>
+
+<div class="field">
+<label>Link da Imagem</label>
+<input type="text" id="imagem">
+</div>
+
+<div class="field">
+<label>Descrição</label>
+<textarea id="descricao"></textarea>
+</div>
+
+<div class="field">
+<label>Link do Vídeo no YouTube</label>
+<input type="text" id="video">
+</div>
+
+<button onclick="gerarLink()">Gerar Link</button>
+
+<div class="result-box">
+<strong>Link Gerado:</strong>
+<div id="linkGerado"></div>
+<button class="copy-btn" onclick="copiarLink()">Copiar Link</button>
+</div>
+
+<div class="result-box">
+<strong>Mensagem Pronta:</strong>
+<div id="mensagemGerada"></div>
+<button class="copy-btn" onclick="copiarMensagem()">Copiar Mensagem</button>
+</div>
+
+</div>
+
+<script>
+
+function gerarLink(){
+
+const base = "https://pstimmod.netlify.app/";
+
+const titulo = encodeURIComponent(document.getElementById("titulo").value);
+const link = encodeURIComponent(document.getElementById("link").value);
+const imagem = encodeURIComponent(document.getElementById("imagem").value);
+const descricao = encodeURIComponent(document.getElementById("descricao").value);
+const video = encodeURIComponent(document.getElementById("video").value);
+
+const urlFinal = `${base}?titulo=${titulo}&descricao=${descricao}&link=${link}&imagem=${imagem}&video=${video}`;
+
+document.getElementById("linkGerado").textContent = urlFinal;
+
+const mensagem = 
+`🔥 NOVO CONTEÚDO DISPONÍVEL 🔥
+
+📂 ${decodeURIComponent(titulo)}
+
+📥 Baixe agora:
+${urlFinal}
+
+🚀 PS TIM MOD - Conteúdos gratuitos desde 2016`;
+
+document.getElementById("mensagemGerada").textContent = mensagem;
+
+}
+
+function copiarLink(){
+const texto = document.getElementById("linkGerado").textContent;
+navigator.clipboard.writeText(texto);
+alert("Link copiado!");
+}
+
+function copiarMensagem(){
+const texto = document.getElementById("mensagemGerada").textContent;
+navigator.clipboard.writeText(texto);
+alert("Mensagem copiada!");
+}
+
+</script>
+
+</body>
+</html>

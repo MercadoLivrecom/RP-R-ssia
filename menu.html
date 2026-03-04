@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Principal 🌟</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .user-info {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .user-info img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+    .logout-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌟 Menu Principal 🌟</h1>
+    <div class="user-info" id="user-info">
+      Carregando informações... ⏳
+    </div>
+    <button class="logout-btn" onclick="logout()">🔒 Sair</button>
+    <div class="footer">
+      Precisa de ajuda? Entre em contato conosco via 📧 <a href="mailto:suporte@exemplo.com">suporte@exemplo.com</a>.
+    </div>
+  </div>
+
+  <script>
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    }
+
+    function logout() {
+      localStorage.removeItem('googleToken');
+      window.location.href = 'login.html';
+    }
+
+    window.onload = function () {
+      const token = localStorage.getItem('googleToken');
+      if (!token) {
+        alert('Você precisa fazer login primeiro. 🔐');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const userData = parseJwt(token);
+
+      const userInfoDiv = document.getElementById('user-info');
+      userInfoDiv.innerHTML = `
+        <img src="${userData.picture}" alt="Foto do usuário">
+        <p><strong>Nome:</strong> ${userData.name}</p>
+        <p><strong>E-mail:</strong> ${userData.email}</p>
+      `;
+    };
+  </script>
+</body>
+</html>
